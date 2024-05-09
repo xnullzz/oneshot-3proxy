@@ -17,7 +17,7 @@ log /dev/stdout
 logformat "%t %r %b %T"
 EOF
 
-docker run -d -p $PORT:$PORT --name $CONTAINER_NAME 3proxy
+docker run -d -p $PORT:$PORT --name $CONTAINER_NAME -v $(pwd)/3proxy.cfg:/etc/3proxy/3proxy.cfg 3proxy
 
 CONTAINER_ID=$(docker inspect --format='{{.Id}}' $CONTAINER_NAME | cut -c1-12)
 
