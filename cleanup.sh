@@ -8,6 +8,8 @@ if [ -f ./.env ]; then
             docker stop $CONTAINER_ID > /dev/null
             docker rm $CONTAINER_ID > /dev/null
             echo "Container removed successfully."
+	    echo "Removing 3proxy.cfg and .env files"
+	    rm -rfv {3proxy.cfg,.env}
         else
             echo "Container with ID $CONTAINER_ID not found."
         fi
