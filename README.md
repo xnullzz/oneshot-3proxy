@@ -19,6 +19,7 @@ docker build -t 3proxy .
 ```
 
 ## Usage
+
 1. Generating the 3proxy Container
 
 To create the 3proxy container with random credentials, run the 3proxy_temp.sh script:
