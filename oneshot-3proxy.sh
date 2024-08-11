@@ -3,7 +3,7 @@
 CONTAINER_NAME="3proxy_temp"
 USERNAME=$(openssl rand -hex 4)
 PASSWORD=$(openssl rand -hex 8)
-PORT="3128"
+PORT=$((RANDOM % 25536 + 40000))
 
 TEMP_CREDS=$(openssl rand -base64 12)
 
@@ -26,4 +26,5 @@ echo "CONTAINER_ID=$CONTAINER_ID" > .env
 echo "Temporary credentials for accessing the proxy server:"
 echo "Username: $USERNAME"
 echo "Password: $PASSWORD"
+echo "Port: $PORT"
 echo "Please note that these credentials will only be valid until the Docker container is stopped."
