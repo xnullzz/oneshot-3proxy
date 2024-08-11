@@ -22,10 +22,10 @@ docker build -t 3proxy .
 
 1. Generating the 3proxy Container
 
-To create the 3proxy container with random credentials, run the 3proxy_temp.sh script:
+To create the 3proxy container with random credentials, run the oneshot-3proxy.sh script:
 
 ```bash
-sh 3proxy_temp.sh
+sh oneshot-3proxy.sh
 ```
 
 This script will output the temporary credentials (username and password) required to access the proxy server. Please note that these credentials will only be valid until the Docker container is stopped.
