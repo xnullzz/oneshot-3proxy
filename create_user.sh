@@ -30,8 +30,8 @@ add_random_user() {
   USERNAME=$(generate_random_username)
   PASSWORD=$(generate_random_password)
 
-  # Find the last line containing "users" and insert the new user after it 
-  sed -i '$a users '$USERNAME':CL:'$PASSWORD'' "$CONFIG_FILE" 
+  # Find the line containing "log /dev/stdout" and insert the new user before it
+  sed -i "/log \/dev\/stdout/i users $USERNAME:CL:$PASSWORD" "$CONFIG_FILE" 
 
   # Restart the container
   docker restart $CONTAINER_NAME
