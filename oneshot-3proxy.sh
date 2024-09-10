@@ -1,7 +1,7 @@
 #!/bin/bash
 
 CONTAINER_NAME="3proxy_temp"
-USERNAME=$(openssl rand -hex 4)
+USERNAME=usr01_$(openssl rand -hex 4)
 PASSWORD=$(openssl rand -hex 8)
 PORT=$((RANDOM % 25536 + 40000))
 
