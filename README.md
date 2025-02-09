@@ -38,4 +38,17 @@ To stop and remove the created container, use the cleanup.sh script (it also rem
 sh cleanup.sh
 ```
 
-This script will read the container ID from the .env file and stop and remove the container associated with that ID.
+This script will read the container ID from the .env file and stop and remove the container associated with that ID
+.
+
+##Generating pretty html output for your webserver
+
+`update.py` will generate html file that can be served by reverse-proxy like nginx or apache. When you add/remove users or fully upgrading configuration it will be enough to run
+
+```bash
+python3 update.py -o /var/www/html/index.html
+```
+
+The `-o` argument is path to your html location. 
+
+The `-h` argument can be used to check other available customization options. 
