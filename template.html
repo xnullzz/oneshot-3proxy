@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3Proxy Configuration</title>
+    <style>
+        :root {{
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+        }}
+
+        * {{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }}
+
+        body {{
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.5;
+        }}
+
+        .container {{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }}
+
+        .logo {{
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }}
+
+        .proxy-info {{
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }}
+
+        .proxy-info .value {{
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }}
+
+        .label {{
+            font-size: 0.875rem;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }}
+
+        #users-container {{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }}
+
+        .user-card {{
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease;
+        }}
+
+        .user-card:hover {{
+            transform: translateY(-2px);
+        }}
+
+        .user-card .value {{
+            font-family: 'SF Mono', 'Consolas', monospace;
+            background: var(--gray-100);
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            word-break: break-all;
+        }}
+
+        .copy-btn {{
+            width: 100%;
+            padding: 0.75rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }}
+
+        .copy-btn:hover {{
+            background: var(--primary-dark);
+        }}
+
+        @media (max-width: 640px) {{
+            .container {{
+                padding: 1rem;
+            }}
+            
+            #users-container {{
+                grid-template-columns: 1fr;
+            }}
+        }}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <div style="font-size: 2rem; font-weight: bold; color: var(--primary)">3PROXY</div>
+        </div>
+
+        <div class="proxy-info">
+            <div class="label">Proxy Server Address</div>
+            <div class="value" id="server-ip">{server_ip}:{server_port}</div>
+            <div class="label">Active Users: <span id="user-count">{user_count}</span></div>
+        </div>
+
+        <div id="users-container">
+            {users_html}
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.copy-btn').forEach(button => {{
+            button.addEventListener('click', () => {{
+                const config = `http://${{button.dataset.username}}:${{button.dataset.password}}@{server_ip}:{server_port}`;
+                navigator.clipboard.writeText(config);
+                button.textContent = 'Copied!';
+                setTimeout(() => {{
+                    button.textContent = 'Copy Config';
+                }}, 2000);
+            }});
+        }});
+    </script>
+</body>
+</html>
