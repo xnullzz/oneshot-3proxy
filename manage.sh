@@ -33,6 +33,11 @@ add_user() {
   # Get the highest existing user number
   highest_user_num=$(grep "^users usr" "$CONFIG_FILE" | awk '{print substr($2, 4, 2)}' | sort -n | tail -1)
 
+  # If no users exist yet, start from 0
+  if [[ -z "$highest_user_num" ]]; then
+    highest_user_num=0
+  fi
+
   # Calculate the next user number (force decimal interpretation)
   next_user_num=$((10#$highest_user_num + 1))
 
